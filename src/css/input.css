@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+    /* Variables de Marca Actualizadas */
+    --color-brand-blue: #0077b6;
+    --color-brand-black: #1a1a1a;
+    --color-brand-white: #ffffff;
+
+    /* Tu configuración original */
+    --font-sans: 'Lexend', system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --breakpoint-xxl: 90rem;
+}
+
+/* --- Base --- */
+html {
+    @apply scroll-smooth;
+}
+
+body {
+    /* Cambiamos a fondo blanco para resaltar el logo y texto oscuro */
+    @apply bg-brand-white min-h-screen text-brand-black font-sans;
+}
+
+/* --- Navegación (Tu lógica original con colores nuevos) --- */
+.nav-links {
+    @apply transition-all duration-500 md:static fixed bg-brand-white/95 md:bg-transparent md:min-h-fit h-[calc(100%-65px)] top-[64px] md:w-auto w-full flex items-center px-5 md:px-2 z-50;
+}
+
+.nav-links ul {
+    @apply flex md:flex-row flex-col items-center justify-center gap-8 w-full text-center;
+}
+
+.nav-links ul li a {
+    /* Texto oscuro y bold para que sea legible sobre el blanco */
+    @apply text-brand-black font-bold uppercase text-xs tracking-widest transition-all duration-300 hover:text-brand-blue;
+}
+
+/* --- Estilos de Paginación --- */
+.custom-pagination__button span {
+    @apply cursor-pointer;
+}
+
+.custom-pagination__button.is-active span {
+    @apply text-brand-blue font-semibold;
+}
+
+/* --- Componentes Especializados TechCold --- */
+.service-card {
+    @apply p-8 bg-white rounded-[2.5rem] border border-slate-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-brand-blue/20;
+}
+
+/* --- Tu lógica de Media Queries (Splide y Nav) --- */
+@media (min-width: 1024px) {
+    .splide__track {
+        height: 70vh !important; /* Ajustado para que no tape el header gigante */
+    }
+}
+
+@media(min-width:1439px){
+    /* Mantenemos tu regla de visualización */
+}
+
+@media (max-width: 1439px) {
+    .splide__arrows,
+    .splide__pagination,
+    .custom-pagination {
+        display: none !important;
+    }
+
+    .splide {
+        display: block !important;
+        height: auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .splide__track {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .splide__list {
+        display: block !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        width: 100% !important;
+        transform: none !important;
+        position: relative !important;
+        height: auto !important;
+    }
+
+    .splide__slide {
+        width: 100% !important;
+        flex-shrink: 0 !important;
+        position: relative !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+/* --- Tus Fuentes Lexend --- */
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Light.woff2') format('woff2'),
+    url('../fonts/Lexend-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Bold.woff2') format('woff2'),
+    url('../fonts/Lexend-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Regular.woff2') format('woff2'),
+    url('../fonts/Lexend-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Medium.woff2') format('woff2'),
+    url('../fonts/Lexend-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-SemiBold.woff2') format('woff2'),
+    url('../fonts/Lexend-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
