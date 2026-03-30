@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'header-comp', file: 'header.html' },
         { id: 'hero-comp', file: 'hero.html' },
         { id: 'empresa-comp', file: 'empresa.html' },
+        { id: 'especialidades-comp', file: 'especialidades.html' },
         { id: 'servicios-comp', file: 'servicios.html' },
         { id: 'trabajos-comp', file: 'trabajos.html' },
         { id: 'contacto-comp', file: 'contacto.html' },
