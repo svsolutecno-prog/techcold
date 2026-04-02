@@ -78,6 +78,7 @@ header {
 
 .carousel-container {
     @apply relative w-full overflow-hidden py-10;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .carousel-track {
@@ -115,4 +116,71 @@ header {
     src: url('../fonts/Lexend-Bold.woff2') format('woff2');
     font-weight: bold;
     font-display: swap;
+}
+
+#contacto {
+    background-color: var(--color-brand-black) !important; /* Asegura el color sólido */
+    position: relative;
+    z-index: 20; /* Asegura que esté por encima del fondo del body */
+}
+
+@layer components {
+    .nav-link {
+        @apply text-lg lg:text-xs font-black uppercase tracking-widest text-nav-text hover:text-brand-blue transition-colors;
+    }
+}
+
+/* Clase para mostrar el menú en móvil */
+.menu-open {
+    transform: translateX(0) !important;
+}
+
+/* Evitar scroll cuando el menú está abierto */
+body.menu-active {
+    overflow: hidden;
+}
+
+@layer components {
+    .nav-link {
+        @apply font-black uppercase tracking-[0.2em] text-nav-text hover:text-brand-blue transition-colors duration-300;
+    }
+}
+
+/* Evita que el contenido del sitio se mueva cuando el menú está abierto */
+body.overflow-hidden {
+    height: 100vh;
+    overflow: hidden;
+}
+
+@layer components {
+    .mobile-link {
+        @apply text-lg font-black uppercase tracking-widest text-nav-text border-b border-black/5 pb-2;
+    }
+}
+
+/* Clase para animar la apertura si deseas */
+#mobile-menu:not(.hidden) {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#mobile-dropdown {
+    background-color: var(--color-nav-bg) !important;
+    opacity: 1 !important;
+}
+
+/* Animación de entrada suave */
+#mobile-dropdown:not(.hidden) {
+    display: block;
+    animation: fadeInDown 0.2s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
