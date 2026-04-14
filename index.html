@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechCold 24 | Climatización Profesional</title>
+    <link rel="stylesheet" href="src/css/output.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="antialiased">
+<div id="header-comp"></div>
+<main>
+    <div class="fixed bottom-6 right-6 z-[9999] flex items-center justify-center">
+
+        <div class="absolute w-full h-full rounded-full bg-[#25D366] animate-[ping_3s_linear_infinite] opacity-40"></div>
+
+        <a href="https://wa.me/584142836825"
+           target="_blank"
+           class="relative flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_10px_30px_-5px_rgba(37,211,102,0.6)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 active:scale-90 group">
+
+        <span class="absolute right-full mr-5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest py-2 px-4 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl">
+            Habla con un técnico
+        </span>
+
+            <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.049a11.82 11.82 0 001.592 5.95L0 24l6.101-1.6c1.868 1.021 3.987 1.558 6.142 1.56h.005c6.636 0 12.048-5.415 12.05-12.052a11.798 11.798 0 00-3.535-8.414z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="hero-comp"></div>
+    <div id="empresa-comp"></div>
+    <div id="especialidades-comp"></div>
+    <div id="servicios-comp"></div>
+    <div id="trabajos-comp"></div>
+    <div id="contacto-comp"></div>
+</main>
+<div id="footer-comp"></div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // 1. Función para cargar componentes
+    async function load(id, file) {
+        const res = await fetch(`src/components/${file}`);
+        const html = await res.text();
+        document.getElementById(id).innerHTML = html;
+
+        // Si acabamos de cargar el header, activamos su lógica
+        if (id === 'header-comp') {
+            initMenu();
+        }
+
+        AOS.init({ duration: 1000, once: true });
+    }
+
+    // 2. Función con la lógica del menú
+    function initMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileDropdown = document.getElementById('mobile-dropdown');
+        const menuPath = document.getElementById('menu-icon-path');
+        const body = document.body;
+
+        if (!menuToggle || !mobileDropdown) return;
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = mobileDropdown.classList.contains('hidden');
+
+            if (isHidden) {
+                // Abrir Dropdown
+                mobileDropdown.classList.remove('hidden');
+                menuPath.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Icono X
+                body.style.overflow = 'hidden'; // Opcional: bloquea scroll fondo
+            } else {
+                // Cerrar Dropdown
+                mobileDropdown.classList.add('hidden');
+                menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); // Icono Hamburguesa
+                body.style.overflow = '';
+            }
+        });
+
+        // Cerrar al clickear cualquier link del menú móvil
+        mobileDropdown.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDropdown.classList.add('hidden');
+                menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+                body.style.overflow = '';
+            });
+        });
+
+        // Cerrar si se hace click fuera (en el resto de la página)
+        document.addEventListener('click', (e) => {
+            if (!mobileDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+                mobileDropdown.classList.add('hidden');
+                menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+                body.style.overflow = '';
+            }
+        });
+    }
+
+    // 3. Carga inicial
+    window.onload = () => {
+        load('header-comp', 'header.html');
+        load('hero-comp', 'hero.html');
+        load('especialidades-comp', 'especialidades.html');
+        load('servicios-comp', 'servicios.html');
+        load('trabajos-comp', 'trabajos.html');
+        load('contacto-comp', 'contacto.html');
+        load('footer-comp', 'footer.html');
+    };
+</script>
+</body>
+</html>

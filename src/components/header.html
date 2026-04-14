@@ -1,0 +1,35 @@
+<header class="fixed top-0 w-full z-[100] bg-nav-bg/80 backdrop-blur-xl border-b border-nav-border">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <a href="#" class="flex items-center z-[110]">
+            <img src="src/img/logo.png" alt="TechCold 24" class="h-10 md:h-[50px] w-auto object-contain">
+        </a>
+
+        <nav id="nav-desktop" class="hidden lg:flex items-center gap-8">
+            <a href="#inicio" class="nav-link">Inicio</a>
+            <a href="#especialidades" class="nav-link">Empresa</a>
+            <a href="#servicios" class="nav-link">Servicios</a>
+            <a href="#proyectos" class="nav-link">Trabajos</a>
+            <a href="#contacto" class="ml-4 px-6 py-2 bg-nav-btn-bg text-nav-btn-text text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-brand-blue transition-all shadow-md">
+                Contactar
+            </a>
+        </nav>
+
+        <button class="lg:hidden z-[110] p-2 text-nav-text" id="menu-toggle">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-dropdown" class="hidden lg:hidden absolute top-20 left-0 w-full bg-nav-bg border-t border-nav-border shadow-2xl z-[105]">
+        <nav class="flex flex-col p-8 gap-6 items-center">
+            <a href="#inicio" class="text-xl font-black uppercase tracking-widest text-nav-text">Inicio</a>
+            <a href="#especialidades" class="text-xl font-black uppercase tracking-widest text-nav-text">Empresa</a>
+            <a href="#servicios" class="text-xl font-black uppercase tracking-widest text-nav-text">Servicios</a>
+            <a href="#proyectos" class="text-xl font-black uppercase tracking-widest text-nav-text">Trabajos</a>
+            <a href="#contacto" class="w-full text-center py-4 bg-nav-btn-bg text-nav-btn-text font-black uppercase tracking-widest rounded-xl shadow-lg">
+                Contactar
+            </a>
+        </nav>
+    </div>
+</header>

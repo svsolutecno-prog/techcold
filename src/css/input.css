@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@theme {
+    /* --- 1. Variables de Marca --- */
+    --color-brand-blue: #0077b6;
+    --color-brand-black: #0f172a;
+    --color-brand-white: #ffffff;
+
+    /* --- 2. Fondo Global: Grises Industriales --- */
+    --color-section-bg-start: #e2e8f0;
+    --color-section-bg-end: #94a3b8;
+
+    /* --- 3. Navbar: Slate-400 (Gris Claro Moderno) --- */
+    --color-nav-bg: #94a3b8;
+    --color-nav-border: #cbd5e1;
+    --color-nav-text: #0f172a; /* Cambiado a oscuro para máxima legibilidad sobre fondo claro */
+    --color-nav-btn-bg: #0077b6;
+    --color-nav-btn-text: #ffffff;
+
+    /* --- 4. Hero & Secciones --- */
+    --color-hero-badge-bg: var(--color-nav-btn-bg);
+    --color-hero-text-main: #1e293b;
+    --color-hero-btn-alt-border: var(--color-brand-blue);
+
+    /* --- 5. Cards: Fondo Sólido Recuperado --- */
+    --color-card-bg: #f8fafc;
+    --color-card-border: #ffffff;
+    --color-card-text: #1e293b;
+
+    --color-contact-bg: #0f172a;
+
+    --font-sans: 'Lexend', system-ui, sans-serif;
+    --breakpoint-xxl: 90rem;
+}
+
+/* --- Base --- */
+html { @apply scroll-smooth; }
+
+body {
+    @apply min-h-screen text-brand-black font-sans;
+    background: linear-gradient(180deg, var(--color-section-bg-start) 0%, var(--color-section-bg-end) 100%);
+    background-attachment: fixed;
+}
+
+/* Transparencia para que el degradado del body sea el protagonista */
+section:not(#contacto) {
+    background: transparent !important;
+}
+
+/* --- Navbar (Claridad Aumentada - 60% transparencia) --- */
+header {
+    background-color: color-mix(in srgb, var(--color-nav-bg), transparent 60%);
+    @apply fixed top-0 w-full z-50 backdrop-blur-xl border-b border-nav-border transition-all duration-300;
+}
+
+.nav-links {
+    @apply transition-all duration-500 md:static fixed md:min-h-fit h-[calc(100%-65px)] top-[64px] md:w-auto w-full flex items-center px-5 md:px-2 z-50;
+    background-color: var(--color-nav-bg);
+}
+
+@media (min-width: 1024px) {
+    .nav-links { background-color: transparent; }
+}
+
+/* --- Componentes: Cards --- */
+.tc-card {
+    background-color: var(--color-card-bg) !important;
+    border: 1px solid var(--color-card-border);
+    color: var(--color-card-text);
+    @apply p-8 rounded-[2.5rem] shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2;
+}
+
+/* --- Animación Carrusel Infinito (Suave 80s) --- */
+@keyframes scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.carousel-container {
+    @apply relative w-full overflow-hidden py-10;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-infinite 80s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+.carousel-item {
+    width: calc(100vw - 48px);
+    @apply px-4 flex-shrink-0;
+}
+
+@media (min-width: 768px) {
+    .carousel-item { width: calc(100vw / 2); }
+}
+
+@media (min-width: 1024px) {
+    .carousel-item { width: calc(1280px / 3); }
+}
+
+/* --- Tipografía --- */
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-display: swap;
+}
+
+#contacto {
+    background-color: var(--color-brand-black) !important; /* Asegura el color sólido */
+    position: relative;
+    z-index: 20; /* Asegura que esté por encima del fondo del body */
+}
+
+@layer components {
+    .nav-link {
+        @apply text-lg lg:text-xs font-black uppercase tracking-widest text-nav-text hover:text-brand-blue transition-colors;
+    }
+}
+
+/* Clase para mostrar el menú en móvil */
+.menu-open {
+    transform: translateX(0) !important;
+}
+
+/* Evitar scroll cuando el menú está abierto */
+body.menu-active {
+    overflow: hidden;
+}
+
+@layer components {
+    .nav-link {
+        @apply font-black uppercase tracking-[0.2em] text-nav-text hover:text-brand-blue transition-colors duration-300;
+    }
+}
+
+/* Evita que el contenido del sitio se mueva cuando el menú está abierto */
+body.overflow-hidden {
+    height: 100vh;
+    overflow: hidden;
+}
+
+@layer components {
+    .mobile-link {
+        @apply text-lg font-black uppercase tracking-widest text-nav-text border-b border-black/5 pb-2;
+    }
+}
+
+/* Clase para animar la apertura si deseas */
+#mobile-menu:not(.hidden) {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#mobile-dropdown {
+    background-color: var(--color-nav-bg) !important;
+    opacity: 1 !important;
+}
+
+/* Animación de entrada suave */
+#mobile-dropdown:not(.hidden) {
+    display: block;
+    animation: fadeInDown 0.2s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
