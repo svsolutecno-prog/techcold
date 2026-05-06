@@ -1,9 +1,13 @@
 {
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.8",
-    "tailwindcss": "^4.1.8"
+    "@tailwindcss/cli": "^4.1.8"
   },
   "scripts": {
     "build": "tailwind -i ./src/css/input.css -o ./src/css/output.css --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.2.4"
   }
 }
